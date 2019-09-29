@@ -9,9 +9,9 @@ my.regsub <- function(matrix,y,nbest,method,nvmax=8){
   p<-ncol(matrix)+1
   temp <- regsubsets(matrix,y,nbest=nbest,method=method,nvmax=nvmax)
   temp.mat <- cbind(summary(temp)$which,summary(temp)$cp,
-                    summary(temp)$bic+p*(2-log(n)), summary(temp)$bic)
+                    n*log(2*pi)+n*log(summary(temp)$rss/(n-(2:(nvmax+1))))+n+(2:(nvmax+1))+2,summary(temp)$bic)
   dimnames(temp.mat)[[2]] <- c(dimnames(summary(temp)$which)[[2]],
-                               "cp", "aic", "bic")
+                               "cp", "aic", "bic_drop")
   return(temp.mat)
 }
 
@@ -20,9 +20,9 @@ my.regsub <- function(matrix,y,nbest,method,nvmax=8){
 
 regsub.mat<-my.regsub(bodyfat.dat[,-c(1,2)],bodyfat.dat$BODYFAT,nbest=1,method = "exhaustive")
 regsub.mat[which.min(regsub.mat[,"aic"]),]
-#Keep WEIGHT, ABDOMEN, WRIST under AIC criteron
+#Keep AGE, HEIGHT, NECK, CHEST, ABDOMEN, FOREARM, WRIST under AIC criteron
 regsub.mat[which.min(regsub.mat[,"cp"]),]
-#Keep AGE, HEIGHT, NECK, CHEST, ABDOMEN, FOREARM, RIST under Mallow's Cp criteron
-regsub.mat[which.min(regsub.mat[,"bic"]),]
+#Keep AGE, HEIGHT, NECK, CHEST, ABDOMEN, FOREARM, WRIST under Mallow's Cp criteron
+regsub.mat[which.min(regsub.mat[,"bic_drop"]),]
 #Keep WEIGHT, ABDOMEN, WRIST under BIC criteron
 
