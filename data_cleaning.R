@@ -50,4 +50,4 @@ outlierTest(lm.dirte1)
 print(bodyfat.raw[224,])#bode fat is low, we choose to reserve
 
 clean.bodyfat=bodyfat.raw[-c(39,42,48,96,76),]
-write.csv(clean.bodyfat,file='cleanfile.csv',row.names = F)
+write.csv(clean.bodyfat,file='dara/cleanfile.csv',row.names = F)
