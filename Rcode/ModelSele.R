@@ -1,4 +1,5 @@
 bodyfat.dat=read.csv("data/cleanfile.csv")
+View(bodyfat.dat)
 
 library(leaps)
 library(caret)
@@ -17,7 +18,7 @@ my.regsub <- function(matrix,y,nbest,method,nvmax=8){
   return(temp.mat)
 }
 
-regsub.mat<-my.regsub(bodyfat.dat[,-c(1,2)],bodyfat.dat$BODYFAT,nbest=1,method = "exhaustive")
+regsub.mat<-my.regsub(bodyfat.dat[,-(1:3)],bodyfat.dat$BODYFAT,nbest=1,method = "exhaustive")
 regsub.mat[which.min(regsub.mat[,"aic"]),]
 #Keep AGE, HEIGHT, NECK, CHEST, ABDOMEN, FOREARM, WRIST under AIC criteron
 regsub.mat[which.min(regsub.mat[,"cp"]),]
@@ -27,22 +28,24 @@ regsub.mat[which.min(regsub.mat[,"bic"]),]
 plot(regsub.mat[,"r_square"],type="b",
      main=bquote("Variable selection by"~R^2),
      xlab="Number of variables",
-     ylab=expression(R^2)
+     ylab=expression(R^2),
+     cex=0.5,pch=15
 )
 #model1
-set.seed(123)
-train_control <- trainControl(method="cv", number=4)
-model1 <- train(BODYFAT~AGE+HEIGHT+NECK+CHEST+ABDOMEN+FOREARM+WRIST,data=bodyfat.dat, 
+set.seed(2019)
+train_control <- trainControl(method="cv", number=6)
+model1 <- train(BODYFAT~WEIGHT+ABDOMEN,data=bodyfat.dat,  
                trControl=train_control, 
                method="lm",metric="RMSE")
-print(model1)
+# print(model1)
 #model2
 model2 <- train(BODYFAT~WEIGHT+ABDOMEN+WRIST,data=bodyfat.dat, 
                trControl=train_control, 
                method="lm",metric="RMSE")
-print(model2)
+# print(model2)
 #model3
-model3<- train(BODYFAT~WEIGHT+ABDOMEN,data=bodyfat.dat, 
+model3<- train(BODYFAT~AGE+HEIGHT+NECK+CHEST+ABDOMEN+FOREARM+WRIST,data=bodyfat.dat,
                 trControl=train_control, 
                 method="lm",metric="RMSE")
-print(model3)
+# print(model3)
+
