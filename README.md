@@ -18,7 +18,7 @@ BODYFAT(\%)=-0.08407Weight(lbs)+ 0.88819Abdomen(cm) -1.30210Wrist(cm)- 24.39458
 
 ##### Files:
 
-* `Summary.ipynb` is the Jupyter notebook containing a summary of our analysis and results.
+* `ExecutiveSummary.ipynb` is the Jupyter notebook containing a summary of our analysis and results.
 * `Slides.pdf` contains in-class presentation slides.
 
 ##### Folders:
