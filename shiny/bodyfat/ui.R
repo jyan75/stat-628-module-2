@@ -16,15 +16,15 @@ fluidPage(theme = shinytheme("lumen"),
               
         sliderInput(inputId = "Years", label = strong("Age(Years):"),
                     min = 0, max = 100, value = 45, step = 1,
-                    animate = animationOptions(interval = 100)),
+                    animate = animationOptions(interval = 400)),
         
         sliderInput(inputId = "WEIGHT", label=strong("WEIGHT(lbs)*:"),
-                    min = 0, max = 800, value = 178, step = 0.25,
-                    animate = animationOptions(interval = 3200)),
+                    min = 0, max = 800, value = 178, step = 0.05,
+                    animate = animationOptions(interval = 500)),
           
         sliderInput(inputId = "ABDOMEN", label=strong("Abdomen circumference (cm)*:"),
                     min = 0, max = 200, value = 92, step = 0.1,
-                    animate = animationOptions(interval = 2000)),
+                    animate = animationOptions(interval = 1000)),
         
         checkboxInput(inputId = "smoother", label = strong("Robust Model"), value = TRUE),
         

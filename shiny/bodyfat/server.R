@@ -51,7 +51,7 @@ server <- function(input, output) {
       if(input$WEIGHT<min(trend_data$WEIGHT)*0.8|input$WEIGHT<min(trend_data$WEIGHT)*1.2|
          input$ABDOMEN<min(trend_data$ABDOMEN)*0.8|input$ABDOMEN>max(trend_data$ABDOMEN)*1.2|
          input$WRIST<min(trend_data$WRIST)*0.8|input$WRIST>max(trend_data$WRIST)*1.2)
-        return(paste("Warning: Input data is extreme. So, please check the input unless
+        return(paste("Warning: Input data is extreme. So, please check the input otherwise
               this prediction may be imprecise."))
     }
     if(input$WEIGHT<min(trend_data$WEIGHT)*0.8|input$WEIGHT<min(trend_data$WEIGHT)*1.2|
@@ -70,8 +70,8 @@ server <- function(input, output) {
     a=character()
     if(input$gender=="Female") a=paste(a,"This prediction is based on Male's data!
                                  This prediction may not be precise.\n")
-    if(input$Years<20|input$Years>50) a=paste(a,"This prediction is based on the data age from
-                              20 to 50, so it may be imprecise for you.\n")
+    if(input$Years<20|input$Years>70) a=paste(a,"This prediction is based on the data mainly age from
+                              20 to 70, so it may be imprecise for you.\n")
     if(selected_trends()==0 | selected_trends()==60) a=paste(a,"This may be inaccurate because
                                                           the result is extreme.\n")
     
