@@ -12,7 +12,7 @@
 
 The goal of this project is to develop a simple rule of thumb technique for estimating body fat percentage using measurements that can be easily obtained. After data preprocessing, variable selection, model selection based on CV and regression diagnosis, the final predicing model is:
 
-$$BODYFAT(\%)=-0.08407Weight(lbs)+ 0.88819Abdomen(cm) -1.30210Wrist(cm)- 24.39458$$
+BODYFAT(\%)=-0.08407Weight(lbs)+ 0.88819Abdomen(cm) -1.30210Wrist(cm)- 24.39458
 
 ### Contents of the Repository
 
