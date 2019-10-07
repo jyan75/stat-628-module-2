@@ -30,7 +30,7 @@ server <- function(input, output) {
   selected_trends <- reactive({
     req(input$WEIGHT)
     req(input$ABDOMEN)
-    if(is.null(input$WRIST)){
+    if(!input$smoother){
       model2(input$WEIGHT,input$ABDOMEN)
     }else{
       model3(input$WEIGHT,input$ABDOMEN,input$WRIST)
