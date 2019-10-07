@@ -42,6 +42,28 @@ server <- function(input, output) {
     p+ geom_vline(aes(xintercept=selected_trends()),
                      color="blue", linetype="dashed", size=1)
   }, height=400)
+  
+  checkInput <- reactive({
+    req(input$WEIGHT)
+    req(input$ABDOMEN)
+    if(input$smoother){
+      req(input$WRIST)
+      if(input$WEIGHT<min(trend_data$WEIGHT)*0.8|input$WEIGHT<min(trend_data$WEIGHT)*1.2|
+         input$ABDOMEN<min(trend_data$ABDOMEN)*0.8|input$ABDOMEN>max(trend_data$ABDOMEN)*1.2|
+         input$WRIST<min(trend_data$WRIST)*0.8|input$WRIST>max(trend_data$WRIST)*1.2)
+        return(paste("Warning: Input data is extreme. So, please check the input unless
+              this prediction may be imprecise."))
+    }
+    if(input$WEIGHT<min(trend_data$WEIGHT)*0.8|input$WEIGHT<min(trend_data$WEIGHT)*1.2|
+       input$ABDOMEN<min(trend_data$ABDOMEN)*0.8|input$ABDOMEN>max(trend_data$ABDOMEN)*1.2)
+      return(paste("Warning: Input data is extreme. So, please check the input unless
+              this prediction may be imprecise."))
+  })
+  
+  output$warnings<- renderText({
+    checkInput()
+  })
+  
   a1<-reactive({
     req(input$gender)
     req(input$Years)
@@ -64,5 +86,8 @@ server <- function(input, output) {
   })
   output$desc <- renderText({
     a1()
+  })
+  output$warning<- renderText({
+    NULL
   })
 }

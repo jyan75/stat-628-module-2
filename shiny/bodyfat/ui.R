@@ -40,8 +40,12 @@ fluidPage(theme = shinytheme("lumen"),
       mainPanel(
         plotOutput(outputId = "lineplot"),
         textOutput(outputId = "desc"),
+        textOutput(outputId = "warnings"),
         tags$a(href = "https://www.healthstatus.com/measuring-body-fat-percentage-home/",
-               "Source: Health Data Reference", target = "_blank")
+               "Source: Health Data Reference", target = "_blank"),
+        textOutput(outputId = "warning"),
+        tags$a(href = "https://github.com/jyan75/stat-628-module-2",
+               "If you have any questions, you can comment in our Github", target = "_blank")
       )
     )
 )
