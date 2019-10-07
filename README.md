@@ -27,4 +27,5 @@ BODYFAT(\%)=-0.08407Weight(lbs)+ 0.88819Abdomen(cm) -1.30210Wrist(cm)- 24.39458
 * `image/` contains the figures we generated and used in the presentation.
 * `RCode/` contains all of the code we wrote to perform our analysis and plots for this project.
 * `summary/` contains the detailed format of our code, execution results and description in ipynb format.
+* `shiny/bodyfat` contains the app code and data for our shiny app.
 
